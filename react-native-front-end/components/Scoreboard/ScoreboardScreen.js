@@ -19,10 +19,10 @@ class ScoreboardScreen extends Component {
   // }
   render() {
     let { leftScore, rightScore } = this.state;
-    let { scoreContainer, leftContainer, rightContainer, scoreText, addButton, scoreButtonContainer } = styles;
+    let { titleText, scoreContainer, leftContainer, rightContainer, scoreText, addButton, scoreButtonContainer } = styles;
     return (
       <View style={{ flex: 1 }}>
-        <Text>Welcome to Scoreboard screen</Text> 
+        <Text style={titleText}>Scoreboard</Text> 
         <View style={scoreContainer}>
             <View style={leftContainer}>
                 <Text style={scoreText}>{leftScore}</Text>
@@ -52,6 +52,9 @@ class ScoreboardScreen extends Component {
   }
 }
 const styles = StyleSheet.create({
+    titleText: {
+      fontSize: 40
+    },
     scoreContainer: {
       flexDirection: "row",
       borderWidth: 1,
