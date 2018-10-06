@@ -1,15 +1,54 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from 'react-navigation';
+
+import HomeStack from './components/Home/HomeStack'
+import LeaderboardStack from './components/Leaderboard/LeaderboardStack'
+import ProfileStack from './components/Profile/ProfileStack'
+import ScoreboardStack from './components/Scoreboard/ScoreboardStack'
+
+const TabNavigator = createBottomTabNavigator(
+  {
+      // Home: HomeStack,
+      Home: ScoreboardStack,
+      Scoreboard: ScoreboardStack,
+      Leaderboard: LeaderboardStack,
+      Profile: ProfileStack
+    
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `ios-home${focused ? '' : '-outline'}`;
+          // iconName = `ios-home`;
+        } else if (routeName === 'Scoreboard') {
+          iconName = `md-tennisball${focused ? '' : ''}`;
+          // iconName = `ios-add-circle${focused ? '' : '-outline'}`;
+
+        } else if (routeName === 'Leaderboard') {
+          // iconName = `group${focused ? '' : '-outline'}`;
+          iconName = `ios-cloud${focused ? '' : '-outline'}`;
+
+        } else if (routeName === 'Profile') {
+          iconName = `ios-person`;
+        } 
+
+        return <Ionicons name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'tomato',
+      inactiveTintColor: 'gray',
+    },
   }
-}
+);
+
+export default App = () => <TabNavigator />
 
 const styles = StyleSheet.create({
   container: {
