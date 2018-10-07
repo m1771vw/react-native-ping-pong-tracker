@@ -10,9 +10,12 @@ const typeDefs = gql`
     id: ID!
     name: String,
     team: String,
-    wins: Int,
-    losses: Int,
-    elo: Int,
+    singleWins: Int,
+    singleLosses: Int,
+    singlesElo: Int,
+    doublesWins: Int,
+    doublesLosses: Int,
+    doublesElo: Int,
     description: String,
     weaknesses: String,
     strengths: String,
@@ -30,15 +33,20 @@ const typeDefs = gql`
     type: String,
     team1Score: Int,
     team22Score: Int,
+    winner: [ID]
     specialNotes: String
   }
 
-    input PlayerInput {
+  input PlayerInput {
+    id: ID!
     name: String,
     team: String,
-    wins: Int,
-    losses: Int,
-    elo: Int,
+    singleWins: Int,
+    singleLosses: Int,
+    singlesElo: Int,
+    doublesWins: Int,
+    doublesLosses: Int,
+    doublesElo: Int,
     description: String,
     weaknesses: String,
     strengths: String,
@@ -55,6 +63,7 @@ const typeDefs = gql`
     type: String,
     team1Score: Int,
     team22Score: Int,
+    winner: [ID]
     specialNotes: String
   }
 
@@ -79,8 +88,8 @@ const resolvers = {
   },
   // Author: {
   //   books: async (obj) => await Promise.all(obj.books.map(bID => Book.findById(bID).exec()))
-  //   // let bookObj = await Author.findById(root.id).populate('books').select('books').exec()
-  //   // return bookObj.books
+  //   let bookObj = await Author.findById(root.id).populate('books').select('books').exec()
+  //   return bookObj.books
   // },
   // Book: {
   //   author: async (obj) => await Author.findById(obj.author).exec()

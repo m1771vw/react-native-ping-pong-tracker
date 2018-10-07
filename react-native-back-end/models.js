@@ -5,9 +5,12 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
 const playerSchema = new Schema({
   name: String,
   team: String,
-  wins: Number,
-  losses: Number,
-  elo: Number,
+  singleWins: Number,
+  singleLosses: Number,
+  singlesElo: Number,
+  doublesWins: Number,
+  doublesLosses: Number,
+  doublesElo: Number,
   description: String,
   weaknesses: String,
   strengths: String,
@@ -26,6 +29,7 @@ const gameSchema = new Schema({
   type: String,
   team1Score: Number,
   team22Score: Number,
+  winner: [ObjectId],
   specialNotes: String
 
 })
