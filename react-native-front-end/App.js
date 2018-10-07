@@ -8,6 +8,12 @@ import HomeStack from './components/Home/HomeStack'
 import LeaderboardStack from './components/Leaderboard/LeaderboardStack'
 import ProfileStack from './components/Profile/ProfileStack'
 import ScoreboardStack from './components/Scoreboard/ScoreboardStack'
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/"
+});
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -48,7 +54,11 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-export default App = () => <TabNavigator />
+export default App = () => (
+  <ApolloProvider client={client}>
+   <TabNavigator />
+   </ApolloProvider>
+)
 
 const styles = StyleSheet.create({
   container: {

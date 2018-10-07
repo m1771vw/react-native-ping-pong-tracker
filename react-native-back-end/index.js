@@ -32,13 +32,12 @@ const typeDefs = gql`
     player4: ID,
     type: String,
     team1Score: Int,
-    team22Score: Int,
+    team2Score: Int,
     winner: [ID]
     specialNotes: String
   }
 
   input PlayerInput {
-    id: ID!
     name: String,
     team: String,
     singleWins: Int,
@@ -62,7 +61,7 @@ const typeDefs = gql`
     player4: ID,
     type: String,
     team1Score: Int,
-    team22Score: Int,
+    team2Score: Int,
     winner: [ID]
     specialNotes: String
   }
