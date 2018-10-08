@@ -22,6 +22,8 @@ class ProfileScreen extends Component {
 renderAllPlayers = ({item}) => (
   <View style={styles.profileCell}>
     <Text>{item.name}</Text>
+    <Text>{item.singleWins}W - {item.singleLosses}L</Text>
+    <Text>ELO: {item.singlesElo}</Text>
   </View>
 )
   render() {

@@ -38,10 +38,10 @@ class ScoreboardScreen extends Component {
   let response = await addGame({
     variables: {
       game: {
-        player1: "5bb828842a4f297c17986d47",
-        player2: "5bb82c8b75b82c0485c00b98",
-        player3: "5bb82d8e9633d104992d9f92",
-        player4: "5bb82d8f9633d104992d9f93",
+        player1 : "5bb828842a4f297c17986d47",
+        player2 : "5bb9ceb3c21fc87e20f0aaf7",
+        player3 : "5bb9ceb4c21fc87e20f0aaf8",
+        player4 : "5bb9ceb5c21fc87e20f0aaf9",
         type: "Doubles",
         team1Score: 10,
         team2Score: 21,
@@ -76,11 +76,6 @@ class ScoreboardScreen extends Component {
         </View>
           <Mutation mutation={ADD_GAME}>
             {addGame => <Button text={"Submit"} style={submitButton} onPress={() =>this.submitGame(addGame)}/>}
-            {/* <button className="btn btn-small btn-warning" 
-                            onClick={(e) => this.onSubmit(e, editEmployee)}
-                            type='submit'
-                            
-                            >Submit</button> */}
           </Mutation>
             {/* <Button text={"Submit"} style={submitButton} onPress={this.submitGame}/> */}
       </View>

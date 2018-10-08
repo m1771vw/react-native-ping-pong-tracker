@@ -6,9 +6,16 @@ import { Query } from 'react-apollo';
 const GAMES_QUERY = gql`
   {
     games {
-      id team1Score team2Score winner {
+      id team1Score team2Score 
+      winner {
         name
       }   
+      player1 {
+        name
+      }
+      player2 {
+        name
+      }
     }
   }
 `
@@ -19,11 +26,16 @@ class HomePage extends Component {
 //   selectGroup = (gameTitle, img_url) => () => {
 //     this.props.navigation.navigate('Game', { title: gameTitle, img_url });
 //   }
-  renderMatchHistory = ({item}) => (
-    <View style={styles.matchHistoryCell}>
-      <Text>{item.team1Score}</Text>
-    </View>
-  )
+  renderMatchHistory = ({item}) => {
+    let { team1Score, player1, player2, team2Score } = item;
+    console.log("player2: ", player2);
+    return (
+      <View style={styles.matchHistoryCell}>
+        <Text>{player1.name} vs. {player2.name}</Text>
+        <Text>Score: {team1Score} - {team2Score}</Text>
+      </View>
+    )
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -59,7 +71,6 @@ const styles = StyleSheet.create({
   matchHistoryCell: {
     borderWidth: 1,
     borderColor: 'black',
-    height: 30,
     margin: 10
   }
 })

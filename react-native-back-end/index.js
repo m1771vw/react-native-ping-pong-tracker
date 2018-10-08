@@ -89,12 +89,20 @@ const resolvers = {
     player1: async (root) => await Player.findById(root.player1).populate('player1').exec(),
     player2: async (root) => await Player.findById(root.player2).populate('player2').exec(),
     player3: async (root) => await Player.findById(root.player3).populate('player3').exec(),
-    player4: async (root) => await Player.findById(root.player4).populate('player4').exec()
+    player4: async (root) => await Player.findById(root.player4).populate('player4').exec(),
+    winner: async (root)  => {
+      console.log(root);
+    }
     
     // player2: ID,
     // player3: ID,
     // player4: ID,
   },
+  // const employeeResolver = async (rootEmployee) => {
+  //   let employee = await Employee.findById(rootEmployee.id).populate('projectsIDs').select('projectsIDs').exec()
+  //   return employee.projectsIDs; 
+  // }
+  // const projectResolver = async (obj) => (await Project.findById(obj.id).populate('employeeIDs').select('employeeIDs').exec()).employeeIDs
   // Author: {
   //   books: async (obj) => await Promise.all(obj.books.map(bID => Book.findById(bID).exec()))
   //   let bookObj = await Author.findById(root.id).populate('books').select('books').exec()
