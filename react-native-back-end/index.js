@@ -26,14 +26,14 @@ const typeDefs = gql`
 
   type Game {
     id: ID!
-    player1: ID,
-    player2: ID,
-    player3: ID,
-    player4: ID,
+    player1: Player,
+    player2: Player,
+    player3: Player,
+    player4: Player,
     type: String,
     team1Score: Int,
     team2Score: Int,
-    winner: [ID]
+    winner: [Player]
     specialNotes: String
   }
 
@@ -84,6 +84,16 @@ const resolvers = {
     // async () = await. Author.find({}).populate('books').exec()
     players: async() => await Player.find({}).exec(), 
     games: async() => await Game.find({}).exec()
+  },
+  Game: {
+    player1: async (root) => await Player.findById(root.player1).populate('player1').exec(),
+    player2: async (root) => await Player.findById(root.player2).populate('player2').exec(),
+    player3: async (root) => await Player.findById(root.player3).populate('player3').exec(),
+    player4: async (root) => await Player.findById(root.player4).populate('player4').exec()
+    
+    // player2: ID,
+    // player3: ID,
+    // player4: ID,
   },
   // Author: {
   //   books: async (obj) => await Promise.all(obj.books.map(bID => Book.findById(bID).exec()))

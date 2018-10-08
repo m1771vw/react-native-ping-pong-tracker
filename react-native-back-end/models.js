@@ -22,10 +22,10 @@ const playerSchema = new Schema({
 const Player = mongoose.model('player', playerSchema); // 'book' is a look up key. Looks for this word +'s'
 
 const gameSchema = new Schema({
-  player1: ObjectId,
-  player2: ObjectId,
-  player3: ObjectId,
-  player4: ObjectId,
+  player1: { type: ObjectId, ref: 'player' },
+  player2: { type: ObjectId, ref: 'player' },
+  player3: { type: ObjectId, ref: 'player' },
+  player4: { type: ObjectId, ref: 'player' },
   type: String,
   team1Score: Number,
   team2Score: Number,
