@@ -8,7 +8,9 @@ const { width, height } = Dimensions.get("screen");
 const ADD_GAME = gql`
   mutation addGame($game: GameInput) {
     addGame(game: $game) {
-      type team1Score team2Score winner
+      type team1Score team2Score winner {
+        name
+      }
     }
   }
 `

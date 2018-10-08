@@ -18,7 +18,7 @@ const client = new ApolloClient({
 const TabNavigator = createBottomTabNavigator(
   {
       // Home: HomeStack,
-      Home: ScoreboardStack,
+      Home: ProfileStack,
       Scoreboard: ScoreboardStack,
       Leaderboard: LeaderboardStack,
       Profile: ProfileStack
