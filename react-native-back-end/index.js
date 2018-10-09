@@ -69,6 +69,10 @@ const typeDefs = gql`
   type Query {
     players: [Player]
     games: [Game]
+    player(id: ID): Player
+    findByPlayerName(name: ID): Player
+    # getPlayerById: [Player]
+    # getGameById: [Game]
   }
 
   type Mutation {
@@ -83,7 +87,20 @@ const resolvers = {
     // async () = await. Book.find({}).populate('author').exec()
     // async () = await. Author.find({}).populate('books').exec()
     players: async() => await Player.find({}).exec(), 
-    games: async() => await Game.find({}).exec()
+    games: async() => await Game.find({}).exec(),
+    player: async(_, args) => await Player.findById(args.id).exec(),
+    findByPlayerName: async(_, args) => {
+      try{
+        let response = await Player.findOne({name: args.name}).exec();
+        let response2 = await Player.findById(response.id).exec();
+        console.log('Found response2: ', response2);
+        return response;
+      } catch(e) {
+        console.log("Error", e);
+      }
+      
+      
+    }
   },
   Game: {
     // player1: async (root) => await Player.findById(root.player1).populate('player1').exec(),
@@ -92,11 +109,6 @@ const resolvers = {
     player3: async (root) => (await Game.findById(root.id).populate('player3').select('player3').exec()).player3,
     player4: async (root) => (await Game.findById(root.id).populate('player4').select('player4').exec()).player4,
     winner:  async (root) => (await Game.findById(root.id).populate('winner').select('winner').exec()).winner
-    
-    
-    // player2: ID,
-    // player3: ID,
-    // player4: ID,
   },
   // const employeeResolver = async (rootEmployee) => {
   //   let employee = await Employee.findById(rootEmployee.id).populate('projectsIDs').select('projectsIDs').exec()
@@ -124,8 +136,10 @@ const resolvers = {
     addGame: async (_, args) => {
       try {
         let response = await Game.create(args.game)
+        console.log("RESPONSE: ", response);
         return response;
       } catch (e) {
+        console.log("Error: " , e);
         return e.message;
       }
     }
