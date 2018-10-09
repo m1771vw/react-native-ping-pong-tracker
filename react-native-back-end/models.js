@@ -29,7 +29,7 @@ const gameSchema = new Schema({
   type: String,
   team1Score: Number,
   team2Score: Number,
-  winner: [{type: ObjectId, ref: 'Player'}],
+  winner: [{type: ObjectId, ref: 'player'}],
   specialNotes: String
 
 })
