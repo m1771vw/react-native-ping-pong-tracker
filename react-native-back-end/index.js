@@ -86,12 +86,13 @@ const resolvers = {
     games: async() => await Game.find({}).exec()
   },
   Game: {
-    player1: async (root) => await Player.findById(root.player1).populate('player1').exec(),
-    player2: async (root) => await Player.findById(root.player2).populate('player2').exec(),
-    player3: async (root) => await Player.findById(root.player3).populate('player3').exec(),
-    player4: async (root) => await Player.findById(root.player4).populate('player4').exec(),
-    winner: async (root)  => (await Game.findById(root.id).populate('winner').populate('winner').exec()).winner
-    }
+    // player1: async (root) => await Player.findById(root.player1).populate('player1').exec(),
+    player1: async (root) => (await Game.findById(root.id).populate('player1').select('player1').exec()).player1,
+    player2: async (root) => (await Game.findById(root.id).populate('player2').select('player2').exec()).player2,
+    player3: async (root) => (await Game.findById(root.id).populate('player3').select('player3').exec()).player3,
+    player4: async (root) => (await Game.findById(root.id).populate('player4').select('player4').exec()).player4,
+    winner:  async (root) => (await Game.findById(root.id).populate('winner').select('winner').exec()).winner
+    
     
     // player2: ID,
     // player3: ID,
