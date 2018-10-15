@@ -1,7 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 require('./config');
 
-
 const { Player, Game } = require('./models');
 
 const typeDefs = gql`
@@ -70,7 +69,7 @@ const typeDefs = gql`
     players: [Player]
     games: [Game]
     player(id: ID): Player
-    findByPlayerName(name: ID): Player
+    findPlayerByName(name: ID): Player
     # getPlayerById: [Player]
     # getGameById: [Game]
   }
@@ -89,18 +88,7 @@ const resolvers = {
     players: async() => await Player.find({}).exec(), 
     games: async() => await Game.find({}).exec(),
     player: async(_, args) => await Player.findById(args.id).exec(),
-    findByPlayerName: async(_, args) => {
-      try{
-        let response = await Player.findOne({name: args.name}).exec();
-        let response2 = await Player.findById(response.id).exec();
-        console.log('Found response2: ', response2);
-        return response;
-      } catch(e) {
-        console.log("Error", e);
-      }
-      
-      
-    }
+    findPlayerByName: async(_, args) => await Player.findOne({name: args.name}).exec()
   },
   Game: {
     // player1: async (root) => await Player.findById(root.player1).populate('player1').exec(),
@@ -133,6 +121,7 @@ const resolvers = {
           return e.message;
       }
     },
+    
     addGame: async (_, args) => {
       try {
         let response = await Game.create(args.game)

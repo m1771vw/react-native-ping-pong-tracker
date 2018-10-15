@@ -1,8 +1,10 @@
 import { createStackNavigator } from 'react-navigation'
 import ScoreboardScreen from './ScoreboardScreen';
+import ScoreboardPlayerPickerScreen from './ScoreboardPlayerPickerScreen';
 
 const ScoreboardStack = createStackNavigator({
-  ScoreboardHome: ScoreboardScreen
+  ScoreboardHome: ScoreboardPlayerPickerScreen,
+  ScoreboardScreen: ScoreboardScreen
 },
 {
   initialRouteName: 'ScoreboardHome'

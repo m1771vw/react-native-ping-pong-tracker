@@ -35,7 +35,7 @@ renderAllPlayers = ({item}) => (
             if (loading) {
               return <Text>LOADING...</Text>
             }
-            console.log(data);
+            {/* console.log(data); */}
             return (
               <FlatList
                 data={data.players}

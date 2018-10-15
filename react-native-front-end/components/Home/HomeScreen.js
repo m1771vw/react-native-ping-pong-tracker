@@ -28,7 +28,6 @@ class HomePage extends Component {
 //   }
   renderMatchHistory = ({item}) => {
     let { team1Score, player1, player2, team2Score } = item;
-    console.log("player2: ", player2);
     return (
       <View style={styles.matchHistoryCell}>
         <Text>{player1.name} vs. {player2.name}</Text>
@@ -46,7 +45,7 @@ class HomePage extends Component {
             if (loading) {
               return <Text>LOADING...</Text>
             }
-            console.log(data);
+            {/* console.log(data); */}
             return (
               <FlatList
                 data={data.games}
@@ -54,9 +53,7 @@ class HomePage extends Component {
                 renderItem={this.renderMatchHistory}
               />
             )
-
-          }
-
+           }
           }
         </Query>
       </View>
